@@ -286,7 +286,7 @@ export default function SellerDashboard() {
             <span>Cerrar Sesión</span>
           </button>
         </div>
-      <      </div>
+      </div>
 
       {/* Tab Switcher for Admin */}
       {seller?.rol === 'admin' && (
@@ -412,6 +412,7 @@ export default function SellerDashboard() {
                       <th className="px-6 py-4">Tipo / Operación</th>
                       <th className="px-6 py-4">Precio</th>
                       <th className="px-6 py-4">Ubicación</th>
+                      <th className="px-6 py-4">Publicado</th>
                       <th className="px-6 py-4">Disponibilidad</th>
                       <th className="px-6 py-4 text-right">Acciones</th>
                     </tr>
@@ -462,6 +463,9 @@ export default function SellerDashboard() {
                           </td>
                           <td className="px-6 py-4 text-xs text-slate-400 truncate max-w-[150px]">
                             {p.ubicacion}
+                          </td>
+                          <td className="px-6 py-4 text-xs text-slate-500 font-semibold">
+                            {new Date(p.created_at).toLocaleDateString('es-MX')}
                           </td>
                           <td className="px-6 py-4">
                             <button

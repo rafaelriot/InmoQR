@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Search, MapPin, DollarSign, Filter, FileText, ArrowRight, Home as HomeIcon } from 'lucide-react';
+import { Search, MapPin, DollarSign, Filter, FileText, ArrowRight, Home as HomeIcon, Calendar } from 'lucide-react';
 
 // Dynamically import Leaflet Map to avoid SSR errors
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
@@ -383,9 +383,17 @@ export default function Home() {
                           {p.titulo}
                         </h3>
 
-                        <div className="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-3">
-                          <MapPin size={12} className="shrink-0 text-red-400" />
-                          <span className="line-clamp-1">{p.ubicacion}</span>
+                        <div className="flex items-center justify-between text-slate-400 text-[11px] mt-1.5 mb-3">
+                          <div className="flex items-center gap-1">
+                            <MapPin size={11} className="shrink-0 text-red-400" />
+                            <span className="line-clamp-1 max-w-[130px]">{p.ubicacion}</span>
+                          </div>
+                          {p.created_at && (
+                            <div className="flex items-center gap-1 font-semibold text-slate-450">
+                              <Calendar size={11} className="shrink-0 text-blue-500" />
+                              <span>{new Date(p.created_at).toLocaleDateString('es-MX')}</span>
+                            </div>
+                          )}
                         </div>
 
                         <p className="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">
